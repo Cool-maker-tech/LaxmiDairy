@@ -195,11 +195,22 @@ lucide-react · qrcode
 
 ## Performance
 
-Initial JS is roughly **112 kB gzipped** (React + router + GSAP + app), with each
-route, the QR encoder and the WebGL hero split into their own chunks and fetched
-only when needed. **The site makes no third-party requests at all** — fonts are
-self-hosted, and the only external call anywhere is the Google Maps iframe on
-Visit Us, which is lazy-loaded below the fold.
+A cold load of the home page transfers about **288 kB** (gzip-equivalent),
+measured in Chromium against the production build:
+
+| | |
+| --- | --- |
+| JavaScript | 159 kB — React, router, GSAP and the app |
+| Fonts | 114 kB — two variable fonts, latin subset only |
+| CSS | 12 kB |
+
+Every route, the QR encoder and the WebGL hero are split into their own chunks
+and fetched only when needed. **The site makes no third-party requests at all** —
+fonts are self-hosted, and the only external call anywhere is the Google Maps
+iframe on Visit Us, which is lazy-loaded below the fold.
+
+Product photos are not included in that figure; they will dominate page weight
+once added, so keep them near the sizes suggested above.
 
 - Images are lazy-loaded with `sizes` hints and async decoding
 - Animations run on GPU-friendly transforms and opacity only
