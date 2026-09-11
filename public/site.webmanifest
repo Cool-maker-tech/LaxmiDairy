@@ -1,0 +1,12 @@
+{
+  "name": "Laxmi Dairy — Fresh Dairy & Sweets in Surat",
+  "short_name": "Laxmi Dairy",
+  "description": "Fresh dairy products, shrikhand, peda, matho, rabdi and traditional Indian sweets in Surat.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBF7EF",
+  "theme_color": "#0B3B2E",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
