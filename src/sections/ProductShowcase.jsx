@@ -151,35 +151,51 @@ export default function ProductShowcase() {
   ))
 
   return (
-    <section
-      ref={sectionRef}
-      aria-label="Our everyday dairy"
-      className="relative overflow-hidden bg-emerald-900 py-20 text-ivory-100 sm:py-24 lg:flex lg:min-h-screen lg:flex-col lg:justify-center lg:py-0"
-    >
-      <div className="lg:pt-24">{heading}</div>
+    /*
+     * The wrapper is load-bearing, not decorative.
+     *
+     * ScrollTrigger's `pin` moves the pinned element inside a `pin-spacer` div
+     * that it creates. React still believes the section is a direct child of
+     * whatever contained it, and when this page unmounts it removes host nodes
+     * BEFORE running the cleanup that would un-pin them — so it calls
+     * removeChild on the wrong parent and the whole app dies with
+     * "the node to be removed is not a child of this node".
+     *
+     * Pinning a child of a wrapper React owns fixes it: the pin-spacer is
+     * created inside this div, and the div's own parent never changes, so
+     * React removes exactly what it expects to.
+     */
+    <div>
+      <section
+        ref={sectionRef}
+        aria-label="Our everyday dairy"
+        className="relative overflow-hidden bg-emerald-900 py-20 text-ivory-100 sm:py-24 lg:flex lg:min-h-screen lg:flex-col lg:justify-center lg:py-0"
+      >
+        <div className="lg:pt-24">{heading}</div>
 
-      {usePinned ? (
-        <div className="mt-12 overflow-hidden lg:mt-14 lg:pb-24">
-          <ul
-            ref={trackRef}
-            className="flex gap-5 pl-5 will-change-transform sm:gap-7 sm:pl-8 lg:gap-10 lg:pl-14 2xl:pl-20"
-          >
+        {usePinned ? (
+          <div className="mt-12 overflow-hidden lg:mt-14 lg:pb-24">
+            <ul
+              ref={trackRef}
+              className="flex gap-5 pl-5 will-change-transform sm:gap-7 sm:pl-8 lg:gap-10 lg:pl-14 2xl:pl-20"
+            >
+              {cards}
+              <li aria-hidden="true" className="w-10 shrink-0" />
+            </ul>
+          </div>
+        ) : (
+          <ul className="no-scrollbar mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-2 sm:gap-7 sm:px-8">
             {cards}
-            <li aria-hidden="true" className="w-10 shrink-0" />
           </ul>
-        </div>
-      ) : (
-        <ul className="no-scrollbar mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-2 sm:gap-7 sm:px-8">
-          {cards}
-        </ul>
-      )}
+        )}
 
-      {!usePinned && (
-        <p className="container-x mt-5 font-sans text-[0.68rem] tracking-[0.18em] text-ivory-200/35 uppercase">
-          Swipe to explore
-          <ArrowUpRight size={13} strokeWidth={1.5} className="ml-1.5 inline" aria-hidden="true" />
-        </p>
-      )}
-    </section>
+        {!usePinned && (
+          <p className="container-x mt-5 font-sans text-[0.68rem] tracking-[0.18em] text-ivory-200/35 uppercase">
+            Swipe to explore
+            <ArrowUpRight size={13} strokeWidth={1.5} className="ml-1.5 inline" aria-hidden="true" />
+          </p>
+        )}
+      </section>
+    </div>
   )
 }

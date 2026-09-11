@@ -31,6 +31,7 @@ import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion.js'
  */
 export default function PageTransition({ children }) {
   const location = useLocation()
+
   const reduced = usePrefersReducedMotion()
 
   const [displayLocation, setDisplayLocation] = useState(location)

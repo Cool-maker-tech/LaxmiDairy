@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { cx } from '../utils/format.js'
+import { assetUrl } from '../utils/asset.js'
 
 /**
  * Category-tinted fallback used until the shop's own photography is dropped
@@ -58,6 +59,7 @@ export default function SmartImage({
 }) {
   const [status, setStatus] = useState('loading')
   const imgRef = useRef(null)
+  const resolved = assetUrl(src)
 
   useEffect(() => {
     setStatus(src ? 'loading' : 'error')
@@ -80,10 +82,10 @@ export default function SmartImage({
         </div>
       )}
 
-      {src && status !== 'error' && (
+      {resolved && status !== 'error' && (
         <img
           ref={imgRef}
-          src={src}
+          src={resolved}
           alt={alt}
           sizes={sizes}
           loading={priority ? 'eager' : 'lazy'}

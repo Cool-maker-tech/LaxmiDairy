@@ -210,9 +210,16 @@ export default function CreamForm({ reducedMotion = false, className, onUnavaila
     const canvas = canvasRef.current
     if (!canvas) return undefined
 
+    // Set once teardown begins. Without it, the context-loss we trigger
+    // ourselves during cleanup would call back into React and set state on a
+    // component that is already unmounting — which corrupts the commit and
+    // throws "removeChild: node is not a child of this node".
+    let disposed = false
+
     // Any failure below hands the hero back its static fallback rather than
     // leaving a hole where the form should be.
     const giveUp = (reason) => {
+      if (disposed) return
       if (import.meta.env.DEV) console.warn(`[CreamForm] ${reason}`)
       unavailableRef.current?.()
     }
@@ -338,11 +345,17 @@ export default function CreamForm({ reducedMotion = false, className, onUnavaila
     canvas.addEventListener('webglcontextlost', onContextLost)
 
     return () => {
+      // Order matters: stop reporting failures and detach the context-loss
+      // listener BEFORE releasing the context, since loseContext() fires that
+      // very event synchronously.
+      disposed = true
+      canvas.removeEventListener('webglcontextlost', onContextLost)
+
       cancelAnimationFrame(frame)
       resizeObserver.disconnect()
       intersectionObserver.disconnect()
       document.removeEventListener('visibilitychange', onVisibility)
-      canvas.removeEventListener('webglcontextlost', onContextLost)
+
       gl.deleteBuffer(buffer)
       gl.deleteProgram(program)
       gl.deleteShader(vs)

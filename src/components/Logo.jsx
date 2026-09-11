@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { cx } from '../utils/format.js'
+import { assetUrl } from '../utils/asset.js'
 
 /**
  * Brand mark.
@@ -8,7 +9,7 @@ import { cx } from '../utils/format.js'
  * automatically; until then the inline SVG recreation below is shown, so the
  * site never renders a broken image.
  */
-const CUSTOM_LOGO_SRC = '/logo.png'
+const CUSTOM_LOGO_SRC = assetUrl('/logo.png')
 
 let customLogoStatus = 'unknown' // 'unknown' | 'available' | 'missing'
 const listeners = new Set()
