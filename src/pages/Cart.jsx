@@ -79,8 +79,10 @@ export default function Cart() {
                         <SmartImage
                           src={item.image}
                           alt={item.name}
-                          label={item.name}
                           category={item.category}
+                          art={item.art}
+                          seed={item.slug}
+                          tint={item.tint}
                           ratio="aspect-square"
                           imgClassName="transition-transform duration-700 hover:scale-105"
                         />

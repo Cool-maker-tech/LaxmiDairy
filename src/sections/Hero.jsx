@@ -104,7 +104,7 @@ export default function Hero() {
       <div
         ref={formRef}
         aria-hidden="true"
-        className="pointer-events-none absolute top-[6%] right-[-14%] h-[62vh] w-[86vw] opacity-0 sm:top-[4%] sm:right-[-8%] sm:h-[68vh] sm:w-[62vw] lg:top-0 lg:right-[2%] lg:h-[86vh] lg:w-[46vw]"
+        className="pointer-events-none absolute top-[3%] right-[-24%] h-[44vh] w-[74vw] opacity-0 sm:top-[4%] sm:right-[-8%] sm:h-[64vh] sm:w-[60vw] lg:top-0 lg:right-[2%] lg:h-[86vh] lg:w-[46vw]"
       >
         {show3D && !reduced && !formUnavailable ? (
           <Suspense fallback={null}>
@@ -115,17 +115,85 @@ export default function Hero() {
             />
           </Suspense>
         ) : (
-          // Static stand-in: same silhouette, zero JavaScript. Held back to
-          // 70% opacity so the headline keeps its contrast where they overlap.
-          <div className="flex h-full w-full items-center justify-center opacity-70">
-            <div
-              className="h-[70%] w-[70%] rounded-full blur-[2px]"
-              style={{
-                background:
-                  'radial-gradient(38% 38% at 34% 28%, #fdf6e6 0%, #ead7ad 45%, #c9ac78 78%, rgba(201,172,120,0) 100%)',
-              }}
+          /*
+           * Static stand-in for phones, reduced motion, and anywhere WebGL is
+           * unavailable. Drawn rather than blurred: a soft-focus circle reads
+           * as a mistake at phone size, where this is the only thing in the
+           * hero besides the words.
+           */
+          <svg
+            viewBox="0 0 400 400"
+            className="h-full w-full"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <defs>
+              <radialGradient id="cream-body" cx="38%" cy="30%" r="72%">
+                <stop offset="0%" stopColor="#FFFBF0" />
+                <stop offset="46%" stopColor="#F4E3BC" />
+                <stop offset="100%" stopColor="#C9A96F" />
+              </radialGradient>
+              <radialGradient id="cream-glow" cx="50%" cy="48%" r="50%">
+                <stop offset="60%" stopColor="#E7D3A1" stopOpacity="0" />
+                <stop offset="100%" stopColor="#E7D3A1" stopOpacity="0.22" />
+              </radialGradient>
+            </defs>
+
+            {/* halo */}
+            <circle cx="200" cy="200" r="168" fill="url(#cream-glow)" />
+
+            {/* the form: one soft lobed silhouette, the same family of shape
+                the shader draws */}
+            <path
+              d="M200 44
+                 C 258 44, 306 78, 330 128
+                 C 352 174, 350 226, 322 268
+                 C 294 310, 248 340, 198 338
+                 C 146 336, 100 306, 74 262
+                 C 48 218, 50 164, 78 120
+                 C 106 76, 148 44, 200 44 Z"
+              fill="url(#cream-body)"
             />
-          </div>
+
+            {/* Folds, deliberately asymmetric and running off the edge of the
+                form. A centred arc below a round highlight reads as a smiling
+                face, which is not the brand. */}
+            <path
+              d="M64 180 C 118 214, 196 226, 262 204 C 302 190, 330 162, 344 128"
+              fill="none"
+              stroke="#FFFBF0"
+              strokeOpacity="0.42"
+              strokeWidth="12"
+              strokeLinecap="round"
+            />
+            <path
+              d="M92 254 C 150 284, 236 288, 306 254"
+              fill="none"
+              stroke="#C9A96F"
+              strokeOpacity="0.28"
+              strokeWidth="9"
+              strokeLinecap="round"
+            />
+            <path
+              d="M150 312 C 196 330, 250 326, 292 302"
+              fill="none"
+              stroke="#C9A96F"
+              strokeOpacity="0.2"
+              strokeWidth="7"
+              strokeLinecap="round"
+            />
+
+            {/* highlight: a long streak up the shoulder, not a round spot */}
+            <ellipse
+              cx="132"
+              cy="128"
+              rx="52"
+              ry="20"
+              fill="#FFFDF8"
+              opacity="0.5"
+              transform="rotate(-46 132 128)"
+            />
+          </svg>
         )}
       </div>
 

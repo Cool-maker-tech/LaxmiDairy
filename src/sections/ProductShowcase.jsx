@@ -117,8 +117,10 @@ export default function ProductShowcase() {
             <SmartImage
               src={product.image}
               alt={product.featuredName ?? product.name}
-              label={product.featuredName ?? product.name}
               category={product.category}
+              art={product.art}
+              seed={product.slug}
+              tint={product.tint}
               ratio="aspect-[3/4]"
               sizes="(max-width: 768px) 78vw, 30vw"
               imgClassName="transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/item:scale-[1.05]"

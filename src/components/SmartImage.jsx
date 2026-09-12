@@ -1,43 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { cx } from '../utils/format.js'
 import { assetUrl } from '../utils/asset.js'
-
-/**
- * Category-tinted fallback used until the shop's own photography is dropped
- * into `public/products/`. It renders a quiet tonal panel with the product's
- * initial rather than a broken-image icon, so an empty folder still looks
- * deliberate.
- */
-const TONES = {
-  shrikhand: ['#F3E7CE', '#E3CFA4'],
-  peda: ['#EFE0C6', '#DCC194'],
-  matho: ['#F2EADA', '#DDCDB2'],
-  rabdi: ['#EDE6D4', '#D6C6A2'],
-  mithai: ['#F4EAD3', '#E0CB9E'],
-  dairy: ['#F1F4EE', '#D3DFD1'],
-  counter: ['#F3EEE2', '#DACEB6'],
-  default: ['#F2EDE1', '#DCD0B8'],
-}
-
-function Fallback({ label, category, className }) {
-  const [from, to] = TONES[category] ?? TONES.default
-  const initial = (label ?? '?').trim().charAt(0).toUpperCase()
-
-  return (
-    <div
-      className={cx('flex h-full w-full items-center justify-center', className)}
-      style={{ background: `radial-gradient(120% 100% at 30% 20%, ${from} 0%, ${to} 100%)` }}
-      aria-hidden="true"
-    >
-      <span
-        className="font-display select-none text-emerald-800/25"
-        style={{ fontSize: 'clamp(3rem, 16cqw, 9rem)', lineHeight: 1 }}
-      >
-        {initial}
-      </span>
-    </div>
-  )
-}
+import ProductArt from './ProductArt.jsx'
 
 /**
  * Image with a graceful fallback, native lazy-loading and async decoding.
@@ -50,7 +14,9 @@ export default function SmartImage({
   src,
   alt,
   category,
-  label,
+  art,
+  seed,
+  tint,
   ratio = 'aspect-[4/5]',
   className,
   imgClassName,
@@ -76,10 +42,17 @@ export default function SmartImage({
       className={cx('relative overflow-hidden bg-ivory-200', ratio, className)}
       style={{ containerType: 'inline-size' }}
     >
+      {/* Shown until the shop's own photograph loads — and left in place for
+          good if there isn't one yet. See ProductArt for why it is drawn
+          rather than left as a blank tile. */}
       {status !== 'loaded' && (
-        <div className="absolute inset-0">
-          <Fallback label={label ?? alt} category={category} />
-        </div>
+        <ProductArt
+          kind={art}
+          category={category}
+          seed={seed}
+          tint={tint}
+          className="absolute inset-0 h-full w-full"
+        />
       )}
 
       {resolved && status !== 'error' && (

@@ -87,6 +87,15 @@ export const CATEGORIES = [
 
 /* --------------------------------------------------------------------------
  *  PRODUCTS
+ *
+ *  `tint` colours that illustration where the real sweet is a different colour
+ *  (saffron, chocolate, fig, strawberry). Optional.
+ *
+ *  `art` names the illustration shown until a real photograph is dropped into
+ *  `public/products/` (see src/components/ProductArt.jsx). Products without an
+ *  `art` key fall back to their category's drawing, which is the right one for
+ *  every sweet — only the dairy counter needs to distinguish milk from curd
+ *  from paneer from ghee.
  * ----------------------------------------------------------------------- */
 export const PRODUCTS = [
   /* ---------------------------------------------------------- SHRIKHAND -- */
@@ -105,6 +114,7 @@ export const PRODUCTS = [
   },
   {
     id: 'shrikhand-badam-cadbury',
+    tint: '#E8D3B8',
     slug: 'badam-cadbury-shrikhand',
     name: 'Badam Cadbury Shrikhand',
     shortName: 'Badam Cadbury',
@@ -118,6 +128,7 @@ export const PRODUCTS = [
   },
   {
     id: 'shrikhand-kesar-ilaichi',
+    tint: '#F7E3B4',
     slug: 'kesar-ilaichi-shrikhand',
     name: 'Kesar Ilaichi Shrikhand',
     shortName: 'Kesar Ilaichi',
@@ -131,6 +142,7 @@ export const PRODUCTS = [
   },
   {
     id: 'shrikhand-rajbhog',
+    tint: '#F6DFA8',
     slug: 'rajbhog-shrikhand',
     name: 'Rajbhog Shrikhand',
     shortName: 'Rajbhog',
@@ -146,6 +158,7 @@ export const PRODUCTS = [
   /* --------------------------------------------------------------- PEDA -- */
   {
     id: 'peda-kalakand-barfi',
+    tint: '#F8EEDC',
     slug: 'kalakand-barfi',
     name: 'Kalakand Barfi',
     shortName: 'Kalakand Barfi',
@@ -172,6 +185,7 @@ export const PRODUCTS = [
   },
   {
     id: 'peda-kesar',
+    tint: '#F7E3B4',
     slug: 'kesar-peda',
     name: 'Kesar Peda',
     shortName: 'Kesar Peda',
@@ -198,6 +212,7 @@ export const PRODUCTS = [
   },
   {
     id: 'peda-thabdi',
+    tint: '#E4C79A',
     slug: 'thabdi-peda',
     name: 'Thabdi Peda',
     shortName: 'Thabdi Peda',
@@ -239,6 +254,7 @@ export const PRODUCTS = [
   },
   {
     id: 'matho-american-dry-fruit',
+    tint: '#F7EEDC',
     slug: 'american-dry-fruit-matho',
     name: 'American Dry Fruit Matho',
     shortName: 'American Dry Fruit',
@@ -252,6 +268,7 @@ export const PRODUCTS = [
   },
   {
     id: 'matho-mango-pulp',
+    tint: '#FBE2A6',
     slug: 'mango-pulp-matho',
     name: 'Mango Pulp Matho',
     shortName: 'Mango Pulp',
@@ -265,6 +282,7 @@ export const PRODUCTS = [
   },
   {
     id: 'matho-mava-malai',
+    tint: '#F6E8CB',
     slug: 'mava-malai-matho',
     name: 'Mava Malai Matho',
     shortName: 'Mava Malai',
@@ -293,6 +311,7 @@ export const PRODUCTS = [
   },
   {
     id: 'rabdi-angur',
+    tint: '#F3E7C8',
     slug: 'angur-rabdi',
     name: 'Angur Rabdi',
     shortName: 'Angur Rabdi',
@@ -306,6 +325,7 @@ export const PRODUCTS = [
   },
   {
     id: 'rabdi-anjir',
+    tint: '#E3CBA8',
     slug: 'anjir-rabdi',
     name: 'Anjir Rabdi',
     shortName: 'Anjir Rabdi',
@@ -319,6 +339,7 @@ export const PRODUCTS = [
   },
   {
     id: 'rabdi-sitafal',
+    tint: '#F1EBD5',
     slug: 'sitafal-rabdi',
     name: 'Sitafal Rabdi',
     shortName: 'Sitafal Rabdi',
@@ -332,6 +353,7 @@ export const PRODUCTS = [
   },
   {
     id: 'drink-lassi',
+    art: 'lassi',
     slug: 'lassi',
     name: 'Lassi',
     shortName: 'Lassi',
@@ -348,6 +370,7 @@ export const PRODUCTS = [
   },
   {
     id: 'drink-coco',
+    art: 'coco',
     slug: 'coco',
     name: 'Coco',
     shortName: 'Coco',
@@ -391,6 +414,7 @@ export const PRODUCTS = [
   },
   {
     id: 'mithai-kaju-kasata',
+    tint: '#F4DEC2',
     slug: 'kaju-kasata',
     name: 'Kaju Kasata',
     shortName: 'Kaju Kasata',
@@ -404,6 +428,7 @@ export const PRODUCTS = [
   },
   {
     id: 'mithai-strawberry-katli',
+    tint: '#F3D4CE',
     slug: 'strawberry-katli',
     name: 'Strawberry Katli',
     shortName: 'Strawberry Katli',
@@ -417,6 +442,7 @@ export const PRODUCTS = [
   },
   {
     id: 'mithai-kesar-katli',
+    tint: '#F6E2B0',
     slug: 'kesar-katli',
     name: 'Kesar Katli',
     shortName: 'Kesar Katli',
@@ -443,6 +469,7 @@ export const PRODUCTS = [
   },
   {
     id: 'mithai-anjir-roll',
+    tint: '#E0C6A4',
     slug: 'anjir-roll',
     name: 'Anjir Roll',
     shortName: 'Anjir Roll',
@@ -460,6 +487,7 @@ export const PRODUCTS = [
    * ----------------------------------------------------------------------- */
   {
     id: 'dairy-buffalo-milk',
+    art: 'milk',
     slug: 'buffalo-milk',
     name: 'Buffalo Milk',
     shortName: 'Buffalo Milk',
@@ -477,6 +505,7 @@ export const PRODUCTS = [
   },
   {
     id: 'dairy-cow-milk',
+    art: 'milk',
     slug: 'cow-milk',
     name: 'Cow Milk',
     shortName: 'Cow Milk',
@@ -489,6 +518,7 @@ export const PRODUCTS = [
   },
   {
     id: 'dairy-curd',
+    art: 'curd',
     slug: 'curd-dahi',
     name: 'Curd / Dahi',
     shortName: 'Curd / Dahi',
@@ -503,6 +533,7 @@ export const PRODUCTS = [
   },
   {
     id: 'dairy-punjabi-dahi',
+    art: 'curd',
     slug: 'punjabi-dahi',
     name: 'Punjabi Dahi',
     shortName: 'Punjabi Dahi',
@@ -516,6 +547,7 @@ export const PRODUCTS = [
   },
   {
     id: 'dairy-paneer',
+    art: 'paneer',
     slug: 'paneer',
     name: 'Paneer',
     shortName: 'Paneer',
@@ -530,6 +562,7 @@ export const PRODUCTS = [
   },
   {
     id: 'dairy-ghee',
+    art: 'ghee',
     slug: 'ghee',
     name: 'Ghee',
     shortName: 'Ghee',
@@ -544,6 +577,7 @@ export const PRODUCTS = [
   },
   {
     id: 'dairy-buttermilk',
+    art: 'buttermilk',
     slug: 'buttermilk',
     name: 'Buttermilk / Chaas',
     shortName: 'Buttermilk',
@@ -560,6 +594,7 @@ export const PRODUCTS = [
   /* ------------------------------------------------------------ COUNTER -- */
   {
     id: 'counter-rasgulla',
+    art: 'rasgulla',
     slug: 'rasgulla',
     name: 'Rasgulla',
     shortName: 'Rasgulla',

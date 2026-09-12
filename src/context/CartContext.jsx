@@ -130,6 +130,8 @@ export function CartProvider({ children }) {
             name: product.name,
             category: product.category,
             image: product.image,
+            art: product.art,
+            tint: product.tint,
             type: product.type,
             optionId: line.optionId,
             optionLabel,

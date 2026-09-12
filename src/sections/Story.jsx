@@ -24,8 +24,8 @@ export default function Story() {
                   <SmartImage
                     src="/products/shop.jpeg"
                     alt="The Laxmi Dairy counter in Surat"
-                    label="Laxmi Dairy"
                     category="dairy"
+                    art="shop"
                     ratio="aspect-[4/5]"
                     sizes="(max-width: 1024px) 92vw, 40vw"
                     className="scale-[1.12]"

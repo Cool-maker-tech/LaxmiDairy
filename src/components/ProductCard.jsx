@@ -76,7 +76,7 @@ export default function ProductCard({ product, priority = false, compact = false
       ref={cardRef}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className="group/card relative flex h-full flex-col bg-ivory-50 transition-shadow duration-500 will-change-transform hover:shadow-[var(--shadow-lift)]"
+      className="group/card relative flex h-full flex-col bg-ivory-50 transition-[box-shadow,translate] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform hover:-translate-y-1 hover:shadow-[var(--shadow-lift-lg)]"
       style={{ transformStyle: 'preserve-3d' }}
     >
       {/* ---------------------------------------------------------- media -- */}
@@ -91,8 +91,10 @@ export default function ProductCard({ product, priority = false, compact = false
           <SmartImage
             src={product.image}
             alt={product.name}
-            label={product.name}
             category={product.category}
+            art={product.art}
+            seed={product.slug}
+            tint={product.tint}
             priority={priority}
             ratio={compact ? 'aspect-[4/3]' : 'aspect-[4/5]'}
             sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"

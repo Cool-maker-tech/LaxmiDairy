@@ -62,8 +62,8 @@ export default function OurStory() {
                 <SmartImage
                   src="/products/shop-wide.jpeg"
                   alt="Laxmi Dairy's counter in Bhesan Gam, Surat"
-                  label="Laxmi Dairy"
                   category="dairy"
+                  art="shop"
                   ratio="aspect-[16/10] sm:aspect-[21/9]"
                   priority
                   sizes="100vw"

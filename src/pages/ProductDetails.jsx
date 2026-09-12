@@ -105,8 +105,10 @@ export default function ProductDetails() {
                 <SmartImage
                   src={product.image}
                   alt={product.name}
-                  label={product.name}
                   category={product.category}
+                  art={product.art}
+                  seed={product.slug}
+                  tint={product.tint}
                   ratio="aspect-[4/5]"
                   priority
                   sizes="(max-width: 1024px) 92vw, 46vw"

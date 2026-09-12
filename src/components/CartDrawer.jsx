@@ -136,8 +136,10 @@ export default function CartDrawer() {
                   <SmartImage
                     src={item.image}
                     alt=""
-                    label={item.name}
                     category={item.category}
+                    art={item.art}
+                    seed={item.slug}
+                    tint={item.tint}
                     ratio="aspect-square"
                   />
                 </Link>

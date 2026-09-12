@@ -4,6 +4,7 @@ import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import CartDrawer from './components/CartDrawer.jsx'
 import CustomCursor from './components/CustomCursor.jsx'
+import ScrollProgress from './components/ScrollProgress.jsx'
 import ScrollToTop from './components/ScrollToTop.jsx'
 import PageTransition from './components/PageTransition.jsx'
 import Home from './pages/Home.jsx'
@@ -29,6 +30,7 @@ export default function App() {
   return (
     <>
       <CustomCursor />
+      <ScrollProgress />
       <Navbar />
       <CartDrawer />
 
